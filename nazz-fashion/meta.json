@@ -1,0 +1,192 @@
+{
+    "site": {
+        "name": "Nazz Collection",
+        "description": "Premium fashion and custom print designs for the modern lifestyle",
+        "keywords": [
+            "fashion",
+            "clothing",
+            "custom print",
+            "men's fashion",
+            "women's fashion",
+            "children's clothing",
+            "print on demand",
+            "sustainable fashion",
+            "designer clothes",
+            "modern fashion"
+        ],
+        "social": {
+            "facebook": "nazzcollection",
+            "instagram": "nazz.collection",
+            "twitter": "nazzcollection",
+            "pinterest": "nazzcollection"
+        }
+    },
+    "collections": [
+        {
+            "id": "mens",
+            "title": "Men's Collection",
+            "categories": [
+                {
+                    "name": "Tops",
+                    "image": "https://images.unsplash.com/photo-1618001789159-ffffe6f96ef2",
+                    "description": "Premium quality shirts, t-shirts, and sweaters"
+                },
+                {
+                    "name": "Bottoms",
+                    "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
+                    "description": "Stylish pants, jeans, and shorts"
+                },
+                {
+                    "name": "Outerwear",
+                    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5",
+                    "description": "Jackets, coats, and blazers"
+                }
+            ]
+        },
+        {
+            "id": "womens",
+            "title": "Women's Collection",
+            "categories": [
+                {
+                    "name": "Dresses",
+                    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8",
+                    "description": "Elegant dresses for every occasion"
+                },
+                {
+                    "name": "Tops",
+                    "image": "https://images.unsplash.com/photo-1551163943-3f6a855d1153",
+                    "description": "Fashion-forward tops and blouses"
+                },
+                {
+                    "name": "Bottoms",
+                    "image": "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495",
+                    "description": "Trendy pants and skirts"
+                }
+            ]
+        },
+        {
+            "id": "children",
+            "title": "Children's Collection",
+            "categories": [
+                {
+                    "name": "Boys",
+                    "image": "https://images.unsplash.com/photo-1503919545889-aef636e10ad4",
+                    "description": "Comfortable and durable boys' clothing"
+                },
+                {
+                    "name": "Girls",
+                    "image": "https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb",
+                    "description": "Adorable girls' fashion"
+                },
+                {
+                    "name": "Accessories",
+                    "image": "https://images.unsplash.com/photo-1519278409-1f56fdda7fe5",
+                    "description": "Kids' accessories and extras"
+                }
+            ]
+        }
+    ],
+    "featured": {
+        "hero": [
+            {
+                "id": "summer-collection",
+                "title": "Summer 2024 Collection",
+                "description": "Experience the latest trends in summer fashion",
+                "video": "https://player.vimeo.com/external/517090906.hd.mp4?s=60b0bb1109a102456cb3ce293addd06607b7aeae&profile_id=175",
+                "image": "https://images.unsplash.com/photo-1523359346063-d879354c0ea5"
+            },
+            {
+                "id": "sustainable-fashion",
+                "title": "Sustainable Fashion",
+                "description": "Eco-friendly clothing for a better tomorrow",
+                "video": "https://player.vimeo.com/external/478991333.hd.mp4?s=5c01f4b550dd69377fbad89773c19b49d2294064&profile_id=175",
+                "image": "https://images.unsplash.com/photo-1523381294911-8d3cead13475"
+            }
+        ],
+        "collections": [
+            {
+                "id": "summer",
+                "title": "Summer Collection",
+                "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b",
+                "description": "Light and breezy summer styles"
+            },
+            {
+                "id": "casual",
+                "title": "Casual Wear",
+                "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
+                "description": "Comfortable everyday fashion"
+            },
+            {
+                "id": "active",
+                "title": "Active Wear",
+                "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438",
+                "description": "Performance clothing for your active lifestyle"
+            }
+        ]
+    },
+    "customPrints": {
+        "products": [
+            {
+                "id": "tshirt",
+                "name": "T-Shirt",
+                "basePrice": 29.99,
+                "images": {
+                    "front": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+                    "back": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518",
+                    "preview": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
+                }
+            },
+            {
+                "id": "hoodie",
+                "name": "Hoodie",
+                "basePrice": 49.99,
+                "images": {
+                    "front": "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
+                    "back": "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
+                    "preview": "https://images.unsplash.com/photo-1556821840-3a63f95609a7"
+                }
+            },
+            {
+                "id": "sweater",
+                "name": "Sweater",
+                "basePrice": 39.99,
+                "images": {
+                    "front": "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9",
+                    "back": "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9",
+                    "preview": "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9"
+                }
+            }
+        ]
+    },
+    "styleInspiration": [
+        {
+            "id": "casual-chic",
+            "title": "Casual Chic",
+            "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
+            "products": [
+                {
+                    "id": "white-shirt",
+                    "name": "Classic White Shirt",
+                    "price": 49.99,
+                    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+                    "position": { "top": "30%", "left": "20%" }
+                },
+                {
+                    "id": "denim-jeans",
+                    "name": "Slim Fit Jeans",
+                    "price": 79.99,
+                    "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
+                    "position": { "top": "60%", "left": "40%" }
+                }
+            ]
+        }
+    ],
+    "seo": {
+        "title": "Nazz Collection | Premium Fashion & Custom Print Designs",
+        "description": "Discover premium fashion and custom print designs at Nazz Collection. Shop the latest trends in men's, women's, and children's clothing. Create your own unique designs with our print-on-demand service.",
+        "og": {
+            "type": "website",
+            "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b"
+        }
+    }
+}

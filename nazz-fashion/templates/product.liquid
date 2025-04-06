@@ -1,0 +1,310 @@
+<!-- Product Detail Page -->
+<div class="product-detail" 
+     data-id="{{ product.id }}" 
+     data-name="{{ product.title }}" 
+     data-price="{{ product.price | money_without_currency }}" 
+     data-image="{{ product.featured_image | img_url: 'large' }}"
+     data-category="{{ product.type | downcase }}">
+  
+  <div class="container">
+    <div class="product-detail-grid">
+      <!-- Product Images -->
+      <div class="product-images">
+        <div class="product-main-image">
+          <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" id="main-product-image">
+        </div>
+        
+        {% if product.images.size > 1 %}
+          <div class="product-thumbnails">
+            {% for image in product.images %}
+              <div class="thumbnail {% if forloop.first %}active{% endif %}" data-image="{{ image | img_url: 'large' }}">
+                <img src="{{ image | img_url: 'small' }}" alt="{{ product.title }} - Image {{ forloop.index }}">
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        <div class="product-price">{{ product.price | money }}</div>
+        
+        {% if product.available %}
+          <div class="product-availability in-stock">
+            <i class="fas fa-check-circle"></i> In Stock
+          </div>
+        {% else %}
+          <div class="product-availability out-of-stock">
+            <i class="fas fa-times-circle"></i> Out of Stock
+          </div>
+        {% endif %}
+        
+        <div class="product-description">
+          {{ product.description }}
+        </div>
+        
+        {% form 'product', product %}
+          <!-- Variant Selection -->
+          {% if product.variants.size > 1 %}
+            <div class="variant-selector">
+              <label for="product-variant">Options</label>
+              <select id="product-variant" name="id">
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
+                    {{ variant.title }} - {{ variant.price | money }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% else %}
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          {% endif %}
+          
+          <!-- Size Selection -->
+          {% if product.type == 'Clothing' or product.type == 'Footwear' %}
+            <div class="size-selector">
+              <label>Size</label>
+              <div class="size-options">
+                {% assign size_options = 'XS,S,M,L,XL,XXL' | split: ',' %}
+                {% for size in size_options %}
+                  <label class="size-option">
+                    <input type="radio" name="properties[Size]" value="{{ size }}" {% if forloop.index == 3 %}checked{% endif %}>
+                    <span>{{ size }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <button type="button" class="size-guide-btn">
+                <i class="fas fa-ruler"></i> Size Guide
+              </button>
+            </div>
+          {% endif %}
+          
+          <!-- Color Selection -->
+          {% if product.options contains 'Color' %}
+            <div class="color-selector">
+              <label>Color</label>
+              <div class="color-options">
+                {% assign color_option_index = 0 %}
+                {% for option in product.options %}
+                  {% if option == 'Color' %}
+                    {% assign color_option_index = forloop.index0 %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% for value in product.options_by_name['Color'].values %}
+                  <label class="color-option" style="--color: {{ value | downcase }};">
+                    <input type="radio" name="options[{{ color_option_index }}]" value="{{ value }}" {% if forloop.first %}checked{% endif %}>
+                    <span class="color-swatch"></span>
+                    <span class="color-name">{{ value }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+          
+          <!-- Quantity -->
+          <div class="quantity-selector">
+            <label for="quantity">Quantity</label>
+            <div class="quantity-controls">
+              <button type="button" class="quantity-btn minus" aria-label="Decrease quantity">
+                <i class="fas fa-minus"></i>
+              </button>
+              <input type="number" 
+                     id="quantity" 
+                     name="quantity" 
+                     value="1" 
+                     min="1" 
+                     class="qty-input"
+                     aria-label="Quantity">
+              <button type="button" class="quantity-btn plus" aria-label="Increase quantity">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Add to Cart Button -->
+          <div class="product-actions">
+            <button type="submit" class="btn primary add-to-cart-btn" {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+            
+            <button type="button" class="wishlist-btn" aria-label="Add to wishlist">
+              <i class="far fa-heart"></i>
+            </button>
+            
+            <button type="button" class="compare-btn" aria-label="Add to comparison">
+              <i class="fas fa-exchange-alt"></i>
+            </button>
+          </div>
+        {% endform %}
+        
+        <!-- Product Meta -->
+        <div class="product-meta">
+          {% if product.vendor %}
+            <div class="meta-item">
+              <span class="meta-label">Brand:</span>
+              <span class="meta-value">{{ product.vendor }}</span>
+            </div>
+          {% endif %}
+          
+          {% if product.type %}
+            <div class="meta-item">
+              <span class="meta-label">Category:</span>
+              <span class="meta-value">{{ product.type }}</span>
+            </div>
+          {% endif %}
+          
+          {% if product.tags.size > 0 %}
+            <div class="meta-item">
+              <span class="meta-label">Tags:</span>
+              <span class="meta-value">
+                {% for tag in product.tags %}
+                  <a href="/collections/all/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+              </span>
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Social Sharing -->
+        <div class="social-sharing">
+          <span class="share-label">Share:</span>
+          <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer.php?u={{ shop.url }}{{ product.url }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text={{ product.title | url_encode }}&url={{ shop.url }}{{ product.url }}" target="_blank" rel="noopener" aria-label="Share on Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_image | img_url: 'large' }}&description={{ product.title | url_encode }}" target="_blank" rel="noopener" aria-label="Pin on Pinterest">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product Tabs -->
+<section class="product-tabs">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="description">Description</button>
+      <button class="tab-btn" data-tab="details">Details</button>
+      <button class="tab-btn" data-tab="reviews">Reviews</button>
+    </div>
+    
+    <div class="tab-content">
+      <div class="tab-pane active" id="description">
+        {{ product.description }}
+      </div>
+      
+      <div class="tab-pane" id="details">
+        <table class="product-details-table">
+          <tbody>
+            {% if product.vendor %}
+              <tr>
+                <th>Brand</th>
+                <td>{{ product.vendor }}</td>
+              </tr>
+            {% endif %}
+            
+            {% if product.type %}
+              <tr>
+                <th>Category</th>
+                <td>{{ product.type }}</td>
+              </tr>
+            {% endif %}
+            
+            {% for option in product.options_with_values %}
+              <tr>
+                <th>{{ option.name }}</th>
+                <td>
+                  {% for value in option.values %}
+                    {{ value }}{% unless forloop.last %}, {% endunless %}
+                  {% endfor %}
+                </td>
+              </tr>
+            {% endfor %}
+            
+            {% if product.metafields.specifications %}
+              {% for field in product.metafields.specifications %}
+                <tr>
+                  <th>{{ field.first }}</th>
+                  <td>{{ field.last }}</td>
+                </tr>
+              {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="tab-pane" id="reviews">
+        <div class="reviews-container">
+          <!-- This would typically be populated by a reviews app -->
+          <p class="no-reviews">No reviews yet. Be the first to review this product.</p>
+          
+          <div class="write-review">
+            <h3>Write a Review</h3>
+            <form class="review-form">
+              <div class="form-group">
+                <label for="review-name">Name</label>
+                <input type="text" id="review-name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="review-email">Email</label>
+                <input type="email" id="review-email" required>
+              </div>
+              
+              <div class="form-group">
+                <label>Rating</label>
+                <div class="rating-input">
+                  {% for i in (1..5) %}
+                    <label>
+                      <input type="radio" name="rating" value="{{ i }}">
+                      <i class="fas fa-star"></i>
+                    </label>
+                  {% endfor %}
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="review-content">Review</label>
+                <textarea id="review-content" rows="5" required></textarea>
+              </div>
+              
+              <button type="submit" class="btn primary">Submit Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products -->
+<section class="related-products">
+  <div class="container">
+    <div class="section-title">
+      <h2>You May Also Like</h2>
+    </div>
+    
+    <div class="product-grid">
+      {% for product in collections.all.products limit: 4 %}
+        {% include 'product-card', product: product %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Recently Viewed Products -->
+<div id="recently-viewed-container"></div>

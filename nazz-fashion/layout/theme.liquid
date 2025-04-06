@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }} - {{ shop.name }}</title>
+  
+  {{ content_for_header }}
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Theme styles -->
+  {{ 'styles.css' | asset_url | stylesheet_tag }}
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <!-- Mobile Navigation Toggle -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <h1>{{ shop.name }}</h1>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <ul class="menu-list">
+          {% for link in linklists.main-menu.links %}
+            <li><a href="{{ link.url }}">
+              {% case link.title %}
+                {% when 'New' %}
+                  <i class="fas fa-star" aria-hidden="true"></i>
+                {% when 'Women' %}
+                  <i class="fas fa-female" aria-hidden="true"></i>
+                {% when 'Men' %}
+                  <i class="fas fa-male" aria-hidden="true"></i>
+                {% when 'Kids' %}
+                  <i class="fas fa-child" aria-hidden="true"></i>
+                {% when 'Sale' %}
+                  <i class="fas fa-tag" aria-hidden="true"></i>
+                {% else %}
+                  <i class="fas fa-circle" aria-hidden="true"></i>
+              {% endcase %}
+              <span>{{ link.title }}</span>
+            </a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <!-- Utility Navigation -->
+      <div class="nav-utils">
+        <form action="/search" method="get" class="search-form" role="search" aria-label="Site">
+          <div class="search-wrapper">
+            <input type="search" 
+                   name="q"
+                   class="search-input" 
+                   placeholder="Search..." 
+                   aria-label="Search products"
+                   value="{{ search.terms | escape }}"
+                   required>
+            <button type="submit" class="btn search-btn" aria-label="Submit search">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+        
+        <div class="action-buttons">
+          <a href="/account" class="btn" aria-label="User account">
+            <i class="fas fa-user" aria-hidden="true"></i>
+          </a>
+          <a href="/cart" class="btn cart-btn" aria-label="Shopping cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-count" aria-label="{{ cart.item_count }} items in cart">{{ cart.item_count }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Backdrop -->
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About Section -->
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>{{ shop.description }}</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            {% for link in linklists.footer.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            {% if settings.social_facebook_link != blank %}
+              <a href="{{ settings.social_facebook_link }}" aria-label="Follow us on Facebook">
+                <i class="fab fa-facebook" aria-hidden="true"></i>
+              </a>
+            {% endif %}
+            {% if settings.social_instagram_link != blank %}
+              <a href="{{ settings.social_instagram_link }}" aria-label="Follow us on Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>
+            {% endif %}
+            {% if settings.social_twitter_link != blank %}
+              <a href="{{ settings.social_twitter_link }}" aria-label="Follow us on Twitter">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-section">
+          <h3>Newsletter</h3>
+          {% form 'customer', id: 'newsletter-form' %}
+            {% if form.errors %}
+              <div class="form-error">
+                {{ form.errors | default_errors }}
+              </div>
+            {% endif %}
+            
+            {% if form.posted_successfully? %}
+              <div class="form-success">
+                {{ 'general.newsletter_form.confirmation' | t }}
+              </div>
+            {% else %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="form-group">
+                <label for="newsletter-email" class="visually-hidden">Email address</label>
+                <input type="email" 
+                       id="newsletter-email"
+                       name="contact[email]"
+                       placeholder="Enter your email"
+                       required
+                       aria-required="true">
+              </div>
+              <button type="submit" class="btn primary">Subscribe</button>
+            {% endif %}
+          {% endform %}
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  {{ content_for_footer }}
+  
+  <!-- Theme scripts -->
+  {{ 'script.js' | asset_url | script_tag }}
+  {{ 'shopify-export.js' | asset_url | script_tag }}
+</body>
+</html>

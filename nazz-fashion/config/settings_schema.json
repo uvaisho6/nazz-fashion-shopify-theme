@@ -1,0 +1,413 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Nazz Fashion",
+    "theme_version": "1.0.0",
+    "theme_author": "Nazz Collection",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Primary Colors"
+      },
+      {
+        "type": "color",
+        "id": "primary_color",
+        "label": "Primary Color",
+        "default": "#8a4fff"
+      },
+      {
+        "type": "color",
+        "id": "secondary_color",
+        "label": "Secondary Color",
+        "default": "#6c757d"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#ff4f8a"
+      },
+      {
+        "type": "header",
+        "content": "Text Colors"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "text_light",
+        "label": "Light Text Color",
+        "default": "#6c757d"
+      },
+      {
+        "type": "header",
+        "content": "Background Colors"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "background_light",
+        "label": "Light Background Color",
+        "default": "#f8f9fa"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Font Families"
+      },
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Heading Font",
+        "default": "poppins_n6"
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Body Font",
+        "default": "poppins_n4"
+      },
+      {
+        "type": "header",
+        "content": "Font Sizes"
+      },
+      {
+        "type": "range",
+        "id": "base_font_size",
+        "label": "Base Font Size",
+        "min": 12,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "label": "Heading Scale",
+        "min": 1.0,
+        "max": 1.5,
+        "step": 0.1,
+        "default": 1.2
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Container Width"
+      },
+      {
+        "type": "range",
+        "id": "container_width",
+        "label": "Maximum Container Width",
+        "min": 1000,
+        "max": 1600,
+        "step": 50,
+        "unit": "px",
+        "default": 1200
+      },
+      {
+        "type": "header",
+        "content": "Spacing"
+      },
+      {
+        "type": "range",
+        "id": "spacing_scale",
+        "label": "Spacing Scale",
+        "min": 0.8,
+        "max": 1.5,
+        "step": 0.1,
+        "default": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo Image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": "Logo Maximum Width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "default": 150
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main Menu",
+        "default": "main-menu"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Footer Content"
+      },
+      {
+        "type": "text",
+        "id": "footer_title",
+        "label": "Footer Title",
+        "default": "Nazz Collection"
+      },
+      {
+        "type": "richtext",
+        "id": "footer_text",
+        "label": "Footer Text",
+        "default": "<p>Premium fashion brand focusing on quality and style.</p>"
+      },
+      {
+        "type": "header",
+        "content": "Footer Links"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu",
+        "label": "Footer Menu",
+        "default": "footer"
+      },
+      {
+        "type": "header",
+        "content": "Social Media"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook Link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram Link"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter Link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest Link"
+      }
+    ]
+  },
+  {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product Images"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_image_zoom",
+        "label": "Enable Image Zoom",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_thumbnails",
+        "label": "Show Thumbnails",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Product Information"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show Vendor",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sku",
+        "label": "Show SKU",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quantity_selector",
+        "label": "Show Quantity Selector",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_variant_labels",
+        "label": "Show Variant Labels",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Related Products"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_related_products",
+        "label": "Show Related Products",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "related_products_limit",
+        "label": "Number of Related Products",
+        "min": 2,
+        "max": 8,
+        "step": 1,
+        "default": 4
+      }
+    ]
+  },
+  {
+    "name": "Collection Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Collection Layout"
+      },
+      {
+        "type": "select",
+        "id": "collection_layout",
+        "label": "Layout",
+        "options": [
+          {
+            "value": "grid",
+            "label": "Grid"
+          },
+          {
+            "value": "list",
+            "label": "List"
+          }
+        ],
+        "default": "grid"
+      },
+      {
+        "type": "range",
+        "id": "products_per_page",
+        "label": "Products Per Page",
+        "min": 8,
+        "max": 48,
+        "step": 4,
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "Filtering and Sorting"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_collection_sorting",
+        "label": "Show Sorting Options",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_collection_filtering",
+        "label": "Show Filtering Options",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Cart Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cart Features"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable Order Notes",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_terms_conditions_enable",
+        "label": "Enable Terms and Conditions",
+        "default": false
+      },
+      {
+        "type": "textarea",
+        "id": "cart_terms_conditions_text",
+        "label": "Terms and Conditions Text"
+      }
+    ]
+  },
+  {
+    "name": "Advanced",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Performance"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_lazy_loading",
+        "label": "Enable Lazy Loading for Images",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_minification",
+        "label": "Enable CSS/JS Minification",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Custom Code"
+      },
+      {
+        "type": "html",
+        "id": "custom_css",
+        "label": "Custom CSS"
+      },
+      {
+        "type": "html",
+        "id": "custom_js",
+        "label": "Custom JavaScript"
+      }
+    ]
+  }
+]
