@@ -1,0 +1,162 @@
+<!-- Header Section -->
+<header class="header {% if section.settings.sticky_header %}header--sticky{% endif %}" 
+        role="banner"
+        style="background-color: {{ section.settings.background_color }};">
+  <div class="nav-container">
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      {% if section.settings.logo != blank %}
+        <a href="/" class="logo-image">
+          <img src="{{ section.settings.logo | img_url: '150x' }}"
+               alt="{{ shop.name }}"
+               style="max-width: {{ section.settings.logo_max_width }}px;">
+        </a>
+      {% else %}
+        <a href="/" class="logo-text" style="color: {{ section.settings.text_color }};">
+          {{ shop.name }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <ul class="menu-list" style="color: {{ section.settings.text_color }};">
+        {% for link in section.settings.menu.links %}
+          <li>
+            <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+              {% case link.title %}
+                {% when 'New' %}
+                  <i class="fas fa-star" aria-hidden="true"></i>
+                {% when 'Women' %}
+                  <i class="fas fa-female" aria-hidden="true"></i>
+                {% when 'Men' %}
+                  <i class="fas fa-male" aria-hidden="true"></i>
+                {% when 'Kids' %}
+                  <i class="fas fa-child" aria-hidden="true"></i>
+                {% when 'Sale' %}
+                  <i class="fas fa-tag" aria-hidden="true"></i>
+                {% else %}
+                  <i class="fas fa-circle" aria-hidden="true"></i>
+              {% endcase %}
+              <span>{{ link.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <!-- Utility Navigation -->
+    <div class="nav-utils">
+      {% if section.settings.show_search %}
+        <form action="/search" method="get" class="search-form" role="search" aria-label="Site">
+          <div class="search-wrapper">
+            <input type="search" 
+                   name="q"
+                   class="search-input" 
+                   placeholder="{{ section.settings.search_placeholder }}" 
+                   aria-label="Search products"
+                   value="{{ search.terms | escape }}"
+                   required>
+            <button type="submit" class="btn search-btn" aria-label="Submit search">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+      {% endif %}
+      
+      <div class="action-buttons">
+        {% if section.settings.show_account %}
+          <a href="/account" class="btn" aria-label="User account">
+            <i class="fas fa-user" aria-hidden="true"></i>
+          </a>
+        {% endif %}
+        
+        {% if section.settings.show_cart %}
+          <a href="/cart" class="btn cart-btn" aria-label="Shopping cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-count" aria-label="{{ cart.item_count }} items in cart">{{ cart.item_count }}</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Backdrop -->
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 150
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Sticky Header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show Search",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search Placeholder",
+      "default": "Search..."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show Account",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show Cart",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

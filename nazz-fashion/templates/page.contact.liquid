@@ -1,0 +1,112 @@
+<!-- Contact Page Template -->
+<div class="contact-page">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">{{ page.title }}</h1>
+    </header>
+
+    <div class="contact-content">
+      <div class="contact-info">
+        {% if page.content != blank %}
+          <div class="rte">
+            {{ page.content }}
+          </div>
+        {% endif %}
+
+        <div class="store-info">
+          {% if settings.store_address != blank %}
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>{{ settings.store_address }}</p>
+            </div>
+          {% endif %}
+
+          {% if settings.store_phone != blank %}
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <p><a href="tel:{{ settings.store_phone }}">{{ settings.store_phone }}</a></p>
+            </div>
+          {% endif %}
+
+          {% if settings.store_email != blank %}
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <p><a href="mailto:{{ settings.store_email }}">{{ settings.store_email }}</a></p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <div class="form-success">
+              Thanks for contacting us! We'll get back to you as soon as possible.
+            </div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="form-error">
+              <p>Sorry, there was an error sending your message. Please try again:</p>
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <div class="form-fields">
+            <div class="form-group">
+              <label for="ContactFormName">Name</label>
+              <input type="text" 
+                     id="ContactFormName"
+                     name="contact[name]"
+                     value="{% if form.name %}{{ form.name }}{% endif %}"
+                     required>
+            </div>
+
+            <div class="form-group">
+              <label for="ContactFormEmail">Email</label>
+              <input type="email"
+                     id="ContactFormEmail"
+                     name="contact[email]"
+                     value="{% if form.email %}{{ form.email }}{% endif %}"
+                     required>
+            </div>
+
+            <div class="form-group">
+              <label for="ContactFormPhone">Phone Number</label>
+              <input type="tel"
+                     id="ContactFormPhone"
+                     name="contact[phone]"
+                     value="{% if form.phone %}{{ form.phone }}{% endif %}"
+                     pattern="[0-9\-]*">
+            </div>
+
+            <div class="form-group">
+              <label for="ContactFormMessage">Message</label>
+              <textarea id="ContactFormMessage"
+                        name="contact[body]"
+                        rows="5"
+                        required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+
+            <button type="submit" class="btn primary">Send Message</button>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if settings.show_map and settings.map_address != blank %}
+  <div class="map-section">
+    <div class="map-container">
+      <iframe
+        width="100%"
+        height="450"
+        frameborder="0"
+        style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key={{ settings.google_maps_api_key }}&q={{ settings.map_address | url_encode }}"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,255 @@
+<!-- Footer Section -->
+<footer class="footer" 
+        role="contentinfo"
+        style="background-color: {{ section.settings.background_color }};">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- About Section -->
+      <div class="footer-section">
+        <h3 style="color: {{ section.settings.heading_color }};">{{ section.settings.about_title }}</h3>
+        <div class="rte" style="color: {{ section.settings.text_color }};">
+          {{ section.settings.about_text }}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3 style="color: {{ section.settings.heading_color }};">{{ section.settings.links_title }}</h3>
+        <ul class="footer-links">
+          {% for link in section.settings.footer_menu.links %}
+            <li>
+              <a href="{{ link.url }}" 
+                 style="color: {{ section.settings.text_color }}"
+                 {% if link.active %}aria-current="page"{% endif %}>
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Social Links -->
+      <div class="footer-section">
+        <h3 style="color: {{ section.settings.heading_color }};">{{ section.settings.social_title }}</h3>
+        <div class="social-icons">
+          {% if section.settings.facebook_link != blank %}
+            <a href="{{ section.settings.facebook_link }}" 
+               target="_blank" 
+               rel="noopener"
+               style="color: {{ section.settings.social_color }}"
+               aria-label="Follow us on Facebook">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          
+          {% if section.settings.instagram_link != blank %}
+            <a href="{{ section.settings.instagram_link }}" 
+               target="_blank" 
+               rel="noopener"
+               style="color: {{ section.settings.social_color }}"
+               aria-label="Follow us on Instagram">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          
+          {% if section.settings.twitter_link != blank %}
+            <a href="{{ section.settings.twitter_link }}" 
+               target="_blank" 
+               rel="noopener"
+               style="color: {{ section.settings.social_color }}"
+               aria-label="Follow us on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      {% if section.settings.show_newsletter %}
+        <div class="footer-section">
+          <h3 style="color: {{ section.settings.heading_color }};">{{ section.settings.newsletter_title }}</h3>
+          {% form 'customer', id: 'newsletter-form' %}
+            {% if form.errors %}
+              <div class="form-error">
+                {{ form.errors | default_errors }}
+              </div>
+            {% endif %}
+            
+            {% if form.posted_successfully? %}
+              <div class="form-success">
+                {{ section.settings.newsletter_success }}
+              </div>
+            {% else %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="form-group">
+                <input type="email" 
+                       name="contact[email]"
+                       placeholder="{{ section.settings.newsletter_placeholder }}"
+                       required
+                       aria-required="true">
+                <button type="submit" class="btn primary">{{ section.settings.newsletter_button }}</button>
+              </div>
+            {% endif %}
+          {% endform %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="footer-bottom">
+      {% if section.settings.show_payment_icons %}
+        <div class="payment-icons">
+          {% for type in shop.enabled_payment_types %}
+            {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <p class="copyright" style="color: {{ section.settings.text_color }};">
+        {{ section.settings.copyright_text | replace: '[year]', 'now' | date: "%Y" }}
+      </p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "social_color",
+      "label": "Social Icons Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "About Section"
+    },
+    {
+      "type": "text",
+      "id": "about_title",
+      "label": "About Title",
+      "default": "About Us"
+    },
+    {
+      "type": "richtext",
+      "id": "about_text",
+      "label": "About Text",
+      "default": "<p>Premium fashion brand focusing on quality and style.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Quick Links"
+    },
+    {
+      "type": "text",
+      "id": "links_title",
+      "label": "Links Title",
+      "default": "Quick Links"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu",
+      "default": "footer"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "text",
+      "id": "social_title",
+      "label": "Social Title",
+      "default": "Follow Us"
+    },
+    {
+      "type": "text",
+      "id": "facebook_link",
+      "label": "Facebook Link"
+    },
+    {
+      "type": "text",
+      "id": "instagram_link",
+      "label": "Instagram Link"
+    },
+    {
+      "type": "text",
+      "id": "twitter_link",
+      "label": "Twitter Link"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show Newsletter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Newsletter Title",
+      "default": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Subscribe Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_success",
+      "label": "Success Message",
+      "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "header",
+      "content": "Footer Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show Payment Icons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "© [year] Your Store. All rights reserved."
+    }
+  ]
+}
+{% endschema %}
