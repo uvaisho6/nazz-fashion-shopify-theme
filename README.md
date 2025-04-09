@@ -1,67 +1,165 @@
-# Nazz Fashion E-commerce Theme for Shopify
+# Nazz Fashion Shopify Theme
 
-A comprehensive e-commerce theme for clothing and print-on-demand products that's ready to be imported into Shopify.
+A comprehensive e-commerce theme for clothing and print-on-demand products, featuring a modern design and extensive customization options.
 
-## Key Features
+## Features
 
-1. **Responsive Design**: Fully responsive layout that works on all devices from mobile to desktop
-2. **Product Management**: Support for men's, women's, and children's clothing categories
-3. **Cart System**: Advanced cart drawer with quantity validation and stock management
-4. **Wishlist System**: Allows customers to save products for later
-5. **Product Comparison**: Side-by-side comparison of product features
-6. **Recently Viewed Products**: Tracks and displays products customers have viewed
-7. **Size Guide**: Comprehensive size charts with measurement guides and size recommendation tool
-8. **Shopify Export Utility**: Easy export to Shopify with options for demo products and settings
-9. **Promo Code System**: Support for percentage and fixed amount discounts
-10. **Product Recommendations**: Smart recommendations based on cart contents
+1. **Customizable Sections**
+   - Header with dynamic navigation and cart
+   - Hero section with customizable content
+   - Featured collections with flexible layouts
+   - Footer with newsletter and social media integration
+
+2. **Product Features**
+   - Advanced product filtering
+   - Size guide integration
+   - Product image zoom
+   - Related products suggestions
+   - Product variants support
+   - Quick view functionality
+   - Wishlist system
+   - Recently viewed products
+
+3. **Shopping Experience**
+   - Advanced cart drawer
+   - Quantity validation
+   - Stock management
+   - Promo code system
+   - Smart product recommendations
+   - Multiple payment options
+   - Easy checkout flow
+
+4. **Mobile-First Design**
+   - Responsive across all devices
+   - Mobile-optimized navigation
+   - Touch-friendly interfaces
+   - Fast loading performance
 
 ## Theme Structure
 
-The theme follows Shopify's recommended structure:
+```
+nazz-fashion/
+├── assets/
+│   ├── script.js
+│   ├── shopify-export.js
+│   └── styles.css
+├── config/
+│   └── settings_schema.json
+├── layout/
+│   └── theme.liquid
+├── sections/
+│   ├── header.liquid
+│   ├── footer.liquid
+│   ├── hero.liquid
+│   └── featured-collection.liquid
+├── snippets/
+│   └── product-card.liquid
+└── templates/
+    ├── index.liquid
+    ├── product.liquid
+    ├── collection.liquid
+    ├── cart.liquid
+    ├── page.liquid
+    └── page.contact.liquid
+```
 
-- **layout/**: Contains the theme.liquid file that defines the overall layout
-- **templates/**: Contains templates for index, product, collection, and cart pages
-- **snippets/**: Contains reusable code snippets like product cards
-- **assets/**: Contains CSS, JavaScript, and other static files
-- **config/**: Contains theme settings configuration
+## Installation
 
-## How to Use
-
-1. **Clone the Repository**:
+1. **Download the Theme**
+   ```bash
+   git clone https://github.com/uvaisho6/nazz-fashion-shopify-theme.git
    ```
-   git clone https://github.com/your-username/nazz-fashion.git
+
+2. **Import to Shopify**
+   - Go to your Shopify admin panel
+   - Navigate to Online Store > Themes
+   - Click "Add theme" > "Upload zip file"
+   - Select the downloaded theme archive
+
+## Configuration
+
+1. **Theme Settings**
+   - Colors and typography
+   - Header and footer options
+   - Product page layouts
+   - Collection page settings
+   - Cart and checkout customization
+
+2. **Required Setup**
+   - Create navigation menus
+     * Main menu for header
+     * Footer menu for footer links
+   - Set up collections
+   - Configure product options
+   - Add store information
+
+3. **Optional Features**
+   - Newsletter signup
+   - Social media links
+   - Size guide configuration
+   - Payment icons
+   - Custom CSS/JS
+
+## Customization
+
+### Header Section
+- Logo upload and size adjustment
+- Navigation menu configuration
+- Search, account, and cart toggles
+- Color and styling options
+
+### Homepage Sections
+- Hero section with customizable:
+  * Headings and text
+  * Background colors
+  * Button styles
+  * Layout options
+- Featured collections with:
+  * Product grid layouts
+  * Sorting options
+  * Filtering capabilities
+
+### Product Pages
+- Image gallery options
+- Product information layout
+- Variant selectors
+- Size guide integration
+- Related products display
+
+### Footer Options
+- About text
+- Social media links
+- Newsletter configuration
+- Payment methods display
+- Menu and links setup
+
+## Development
+
+To modify the theme:
+
+1. **Local Development**
+   ```bash
+   # Clone the repository
+   git clone https://github.com/uvaisho6/nazz-fashion-shopify-theme.git
+   cd nazz-fashion-shopify-theme
+
+   # Make your changes
+   
+   # Commit and push
+   git add .
+   git commit -m "Your changes"
+   git push origin main
    ```
 
-2. **Import to Shopify**: 
-   - Log in to your Shopify admin panel
-   - Go to Online Store > Themes
-   - Click "Add theme" > "Upload zip file" and select the downloaded archive
-   - Alternatively, use the Shopify CLI to deploy the theme
+2. **Theme Structure**
+   - Use sections for modular components
+   - Follow Shopify's liquid template standards
+   - Maintain mobile-first approach
+   - Keep performance in mind
 
-3. **Customize**: After uploading, click "Customize" to adjust colors, fonts, and other settings
+## Support
 
-4. **Add Products**: Add your products, collections, and content to complete your store setup
-
-## Theme Customization
-
-The theme includes extensive customization options:
-
-- **Colors**: Primary, secondary, accent, text, and background colors
-- **Typography**: Font families and sizes
-- **Layout**: Container width and spacing
-- **Header**: Logo and navigation settings
-- **Footer**: Content, links, and social media
-- **Product Pages**: Image options, information display, and related products
-- **Collection Pages**: Layout, filtering, and sorting options
-- **Cart Page**: Notes, terms and conditions
-
-## Technical Details
-
-The theme is built with:
-- Semantic HTML5
-- CSS3 with responsive design principles
-- Vanilla JavaScript for performance
-- Shopify Liquid templates
+For support, please open an issue in the GitHub repository or contact our support team.
 
 ## License
 
@@ -70,3 +168,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Author
 
 Nazz Collection
+
+## Version History
+
+- 2.0.0 - Added customizable sections and templates
+- 1.0.0 - Initial release
